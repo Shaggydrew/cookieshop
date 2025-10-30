@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Janardhana Cookies</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janandhra Cookies</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Hero Section With Wayang -->
-    <section id="hero">
-        <img id="wayang" src="images/wayang.png" alt="Wayang Puppet">
-        <h1>Janardhana Cookies</h1>
-        <p>Fresh, Sweet, and Made With Love</p>
-    </section>
+<!-- TOP WAYANG SECTION -->
+<div class="wayang-hero">
+    <img src="images/wayang-big.png" class="big-wayang">
+    <h1 class="title">Janandhra Cookies</h1>
+</div>
 
-    <!-- Product Section -->
-    <section id="products">
-        <h2>Our Cookies</h2>
-        <div class="product">
-            <img src="images/cookie1.png">
-            <h3>Sugar Cookies</h3>
-            <p>Rp 10.000 / pc</p>
-            <button onclick="addToCart('Sugar Cookies', 10000)">Add to Cart</button>
-        </div>
-    </section>
+<!-- PRODUCT LIST -->
+<div class="products">
 
-    <!-- Cart Button -->
-    <button id="cartButton" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
-
-    <!-- Cart Popup -->
-    <div id="cartModal">
-        <div id="cartContent">
-            <h2>Your Cart</h2>
-            <ul id="cartItems"></ul>
-            <h3>Total: Rp <span id="totalPrice">0</span></h3>
-            <button onclick="checkout()">Checkout via WhatsApp</button>
-            <button onclick="closeCart()">Close</button>
-        </div>
+    <div class="product-card">
+        <img src="images/cookie1.png">
+        <h3>Sugar Cookies</h3>
+        <p>Rp 10.000 / pack</p>
+        <button class="add-btn" onclick="addToCart('Sugar Cookies', 10000)">Add to Cart</button>
     </div>
 
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+    <div class="product-card">
+        <img src="images/cookie2.png">
+        <h3>Choco Chip Cookies</h3>
+        <p>Rp 12.000 / pack</p>
+        <button class="add-btn" onclick="addToCart('Choco Chip Cookies', 12000)">Add to Cart</button>
+    </div>
 
+</div>
+
+<!-- CART BUTTON -->
+<button class="view-cart" onclick="openCart()">View Cart</button>
+
+<!-- CART POPUP -->
+<div id="cartModal" class="cart-modal">
+    <div class="cart-content">
+        <h2>Your Cart</h2>
+        <ul id="cartItems"></ul>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        <button class="close-btn" onclick="closeCart()">Close</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
