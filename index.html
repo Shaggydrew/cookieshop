@@ -1,52 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Janandhra Cookies</title>
+    <title>Janandhra Cookie Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0d59e; /* yellow-brown batik vibe */
+            overflow-x: hidden;
+            text-align: center;
+        }
 
-<link rel="stylesheet" href="style.css">
+        .big-wayang {
+            position: fixed;
+            bottom: -400px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            animation: popup 2s ease forwards;
+        }
+
+        @keyframes popup {
+            from { bottom: -400px; }
+            to { bottom: 0; }
+        }
+
+        h1 {
+            margin-top: 120px;
+            font-size: 28px;
+            color: #432a09;
+        }
+
+        .btn {
+            background: #6b4f28;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 20px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 <body>
 
-<!-- TOP WAYANG SECTION -->
-<div class="wayang-hero">
+    <h1>Welcome to the Janandhra Cookie Shop from Nizamia</h1>
+
     <img src="images/wayang-big.png" class="big-wayang">
-    <h1 class="title">Janandhra Cookies</h1>
-</div>
 
-<!-- PRODUCT LIST -->
-<div class="products">
+    <a class="btn" href="order.html">BUY NOW</a>
 
-    <div class="product-card">
-        <img src="images/cookie1.png">
-        <h3>Sugar Cookies</h3>
-        <p>Rp 10.000 / pack</p>
-        <button class="add-btn" onclick="addToCart('Sugar Cookies', 10000)">Add to Cart</button>
-    </div>
-
-    <div class="product-card">
-        <img src="images/cookie2.png">
-        <h3>Choco Chip Cookies</h3>
-        <p>Rp 12.000 / pack</p>
-        <button class="add-btn" onclick="addToCart('Choco Chip Cookies', 12000)">Add to Cart</button>
-    </div>
-
-</div>
-
-<!-- CART BUTTON -->
-<button class="view-cart" onclick="openCart()">View Cart</button>
-
-<!-- CART POPUP -->
-<div id="cartModal" class="cart-modal">
-    <div class="cart-content">
-        <h2>Your Cart</h2>
-        <ul id="cartItems"></ul>
-        <button class="checkout-btn" onclick="checkout()">Checkout</button>
-        <button class="close-btn" onclick="closeCart()">Close</button>
-    </div>
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
