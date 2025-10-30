@@ -1,24 +1,17 @@
 let cart = [];
-const WHATSAPP_NUMBER = "6281380318085"; // ✅ Your WhatsApp number
 
 function addToCart(name, price) {
     cart.push({ name, price });
-    document.getElementById("cartCount").innerText = cart.length;
+    alert(name + " added to cart!");
 }
 
 function openCart() {
     document.getElementById("cartModal").style.display = "block";
-
-    let itemList = "";
-    let total = 0;
-
+    let list = document.getElementById("cartItems");
+    list.innerHTML = "";
     cart.forEach(item => {
-        itemList += `<li>${item.name} - Rp ${item.price}</li>`;
-        total += item.price;
+        list.innerHTML += `<li>${item.name} - Rp ${item.price}</li>`;
     });
-
-    document.getElementById("cartItems").innerHTML = itemList;
-    document.getElementById("totalPrice").innerText = total;
 }
 
 function closeCart() {
@@ -26,13 +19,9 @@ function closeCart() {
 }
 
 function checkout() {
-    if (cart.length === 0) return alert("Cart is empty!");
-
-    let message = "Order:%0A";
+    let message = "Hello! I want to order:\n";
     cart.forEach(item => {
-        message += `- ${item.name}%0A`;
+        message += `- ${item.name} Rp ${item.price}\n`;
     });
-
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-    window.open(url);
+    window.open("https://wa.me/6281380318085?text=" + encodeURIComponent(message));
 }
