@@ -4,92 +4,135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Janandhra Cookies</title>
+
 <style>
-    body {
-        margin: 0;
-        font-family: 'Georgia', serif;
-        background: #f6e9cd;
-        color: #2e1c07;
-    }
-    header {
-        background: #3c2208;
-        color: white;
-        padding: 30px;
-        text-align: center;
-        font-size: 32px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-    .hero {
-        text-align: center;
-        padding: 60px 20px;
-    }
-    .hero h1 {
-        font-size: 40px;
-        margin-bottom: 10px;
-    }
-    .wayang {
-        width: 220px;
-        margin: 25px auto;
-        display: block;
-    }
-    .section {
-        max-width: 800px;
-        margin: auto;
-        padding: 30px 20px;
-    }
-    .card {
-        background: #fff4d1;
-        border: 2px solid #b88a37;
-        border-radius: 10px;
-        padding: 20px;
-        margin-top: 20px;
-    }
-    footer {
-        text-align: center;
-        padding: 20px;
-        margin-top: 60px;
-        background: #3c2208;
-        color: white;
-        font-size: 14px;
-    }
+/* Reset & Body */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Poppins", sans-serif; background: #faf5e4; }
+
+/* HERO / TOP SECTION */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background: url('images/batik-bg.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.wayang-left, .wayang-right {
+    position: absolute;
+    bottom: 0;
+    width: 130px;
+    animation: popup 0.6s ease-out forwards, wave 2s infinite ease-in-out;
+}
+
+.wayang-left { left: 20px; transform-origin: bottom right; animation-delay: 0s, 0s; }
+.wayang-right { right: 20px; transform-origin: bottom left; animation-delay: 0.1s, 0s; }
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(6deg); }
+}
+
+@keyframes popup {
+    0% { opacity: 0; transform: scale(0.3); }
+    60% { opacity: 1; transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.hero-title {
+    color: #6d2e00;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* PRODUCTS SECTION */
+.products {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+}
+
+.product-card h3 {
+    margin: 10px 0 5px;
+    color: #6d2e00;
+}
+
+.product-card p {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.buy-btn {
+    background: #ffb400;
+    border: none;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.3s ease;
+}
+
+.buy-btn:hover { background: #ffa200; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .hero-title { font-size: 36px; }
+    .wayang-left, .wayang-right { width: 100px; }
+}
 </style>
 </head>
+
 <body>
 
-<header>
-    JANANDHRA COOKIES
-</header>
-
+<!-- HERO / WAYANG TOP -->
 <div class="hero">
-    <h1>Kue Tradisional Premium</h1>
-    <p>Rasa Nusantara. Resep Tradisional. Dibuat dengan sepenuh hati.</p>
-
-    <!-- serious traditional wayang in SVG so it NEVER breaks -->
-    <img class="wayang" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Wayang_Kulit.svg">
+    <img src="images/wayang-left.png" class="wayang-left">
+    <h1 class="hero-title">Janandhra Cookies</h1>
+    <img src="images/wayang-right.png" class="wayang-right">
 </div>
 
-<div class="section">
-    <h2>Kenapa Memilih Janandhra?</h2>
+<!-- PRODUCTS -->
+<div class="products">
 
-    <div class="card">
-        ✅ Bahan premium asli  
-        ✅ Rasa khas Indonesia  
-        ✅ Tanpa pengawet  
-        ✅ Cocok untuk hampers & acara
+    <div class="product-card">
+        <img src="images/cookie1.jpg">
+        <h3>Choco Chip Cookies</h3>
+        <p>Rp 10.000 / pack</p>
+        <a href="https://wa.me/62XXXXXXXXXX"><button class="buy-btn">Buy Now</button></a>
     </div>
 
-    <div class="card">
-        <h3>Produk Best Seller</h3>
-        • Kastengel Premium  
-        • Nastar Lumer  
-        • Cookies Coklat  
-    </div>
 </div>
-
-<footer>
-    © 2025 Janandhra Cookies • Dibuat oleh Tim Marketing
-</footer>
 
 </body>
 </html>
