@@ -1,138 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Janandhra Cookies</title>
-
-<style>
-/* Reset & Body */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: "Poppins", sans-serif; background: #faf5e4; }
-
-/* HERO / TOP SECTION */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 350px;
-    background: url('images/batik-bg.jpg') center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.wayang-left, .wayang-right {
-    position: absolute;
-    bottom: 0;
-    width: 130px;
-    animation: popup 0.6s ease-out forwards, wave 2s infinite ease-in-out;
-}
-
-.wayang-left { left: 20px; transform-origin: bottom right; animation-delay: 0s, 0s; }
-.wayang-right { right: 20px; transform-origin: bottom left; animation-delay: 0.1s, 0s; }
-
-@keyframes wave {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(6deg); }
-}
-
-@keyframes popup {
-    0% { opacity: 0; transform: scale(0.3); }
-    60% { opacity: 1; transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.hero-title {
-    color: #6d2e00;
-    font-size: 48px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 1;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-/* PRODUCTS SECTION */
-.products {
-    max-width: 1200px;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 0 20px;
-}
-
-.product-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-.product-card img {
-    width: 100%;
-    border-radius: 12px 12px 0 0;
-}
-
-.product-card h3 {
-    margin: 10px 0 5px;
-    color: #6d2e00;
-}
-
-.product-card p {
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #333;
-}
-
-.buy-btn {
-    background: #ffb400;
-    border: none;
-    padding: 10px 15px;
-    font-size: 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: background 0.3s ease;
-}
-
-.buy-btn:hover { background: #ffa200; }
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    .hero-title { font-size: 36px; }
-    .wayang-left, .wayang-right { width: 100px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janardhana Cookies</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- HERO / WAYANG TOP -->
-<div class="hero">
-    <img src="images/wayang-left.png" class="wayang-left">
-    <h1 class="hero-title">Janandhra Cookies</h1>
-    <img src="images/wayang-right.png" class="wayang-right">
-</div>
+    <!-- Hero Section With Wayang -->
+    <section id="hero">
+        <img id="wayang" src="images/wayang.png" alt="Wayang Puppet">
+        <h1>Janardhana Cookies</h1>
+        <p>Fresh, Sweet, and Made With Love</p>
+    </section>
 
-<!-- PRODUCTS -->
-<div class="products">
+    <!-- Product Section -->
+    <section id="products">
+        <h2>Our Cookies</h2>
+        <div class="product">
+            <img src="images/cookie1.png">
+            <h3>Sugar Cookies</h3>
+            <p>Rp 10.000 / pc</p>
+            <button onclick="addToCart('Sugar Cookies', 10000)">Add to Cart</button>
+        </div>
+    </section>
 
-    <div class="product-card">
-        <img src="images/cookie1.jpg">
-        <h3>Choco Chip Cookies</h3>
-        <p>Rp 10.000 / pack</p>
-        <a href="https://wa.me/62XXXXXXXXXX"><button class="buy-btn">Buy Now</button></a>
+    <!-- Cart Button -->
+    <button id="cartButton" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+
+    <!-- Cart Popup -->
+    <div id="cartModal">
+        <div id="cartContent">
+            <h2>Your Cart</h2>
+            <ul id="cartItems"></ul>
+            <h3>Total: Rp <span id="totalPrice">0</span></h3>
+            <button onclick="checkout()">Checkout via WhatsApp</button>
+            <button onclick="closeCart()">Close</button>
+        </div>
     </div>
 
-</div>
-
+<script src="script.js"></script>
 </body>
 </html>
