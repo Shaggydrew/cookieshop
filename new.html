@@ -1,0 +1,108 @@
+# Janandhra Cookies — Fullstack project
+
+This document contains **all the files** you need for a Wayang-themed Cookie Shop named **Janandhra Cookies**: a nice UI, a realtime server (orders appear instantly for the admin), and a simple backend that stores orders.
+
+---
+
+## Files included
+
+1. `index.html` — frontend (UI + ordering form + Socket.IO client)
+2. `styles.css` — CSS (Wayang-inspired colors, layout)
+3. `client.js` — frontend JavaScript (form, realtime socket)
+4. `server.js` — Node.js backend with Express + Socket.IO + lowdb for simple storage
+5. `package.json` — npm metadata
+6. `README.md` — quick run & deploy instructions
+
+---
+
+> Open each file below, copy into your project folder, and follow the README to run locally.
+
+---
+
+### `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Janandhra Cookies</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Socket.IO client will be loaded from server (or CDN) -->
+</head>
+<body>
+  <header class="hero">
+    <div class="wayang-left" aria-hidden="true">
+      <!-- Simple Wayang SVG ornament -->
+      <svg viewBox="0 0 200 200" class="wayang-svg">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#f7e6c9" />
+            <stop offset="1" stop-color="#f0c27b" />
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="90" fill="url(#g1)" />
+        <!-- stylized wayang face lines (decorative) -->
+        <path d="M50 120 Q100 40 150 120" stroke="#7a3f1c" stroke-width="4" fill="none" />
+      </svg>
+    </div>
+
+    <div class="title">
+      <h1>Janandhra Cookies</h1>
+      <p class="tag">Authentic flavor • Inspired by tradition</p>
+    </div>
+
+    <div class="wayang-right" aria-hidden="true">
+      <!-- mirrored svg -->
+      <svg viewBox="0 0 200 200" class="wayang-svg">
+        <circle cx="100" cy="100" r="90" fill="url(#g1)" />
+        <path d="M50 120 Q100 40 150 120" stroke="#7a3f1c" stroke-width="4" fill="none" />
+      </svg>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="products">
+      <article class="product">
+        <img src="https://via.placeholder.com/400x260?text=Chocolate+Chip" alt="Chocolate Chip">
+        <h3>Chocolate Chip</h3>
+        <p class="price">Rp 5.000</p>
+        <button class="buy" data-name="Chocolate Chip" data-price="5000">Buy Now</button>
+      </article>
+
+      <article class="product">
+        <img src="https://via.placeholder.com/400x260?text=Oreo+Crunch" alt="Oreo Crunch">
+        <h3>Oreo Crunch</h3>
+        <p class="price">Rp 5.500</p>
+        <button class="buy" data-name="Oreo Crunch" data-price="5500">Buy Now</button>
+      </article>
+
+      <article class="product">
+        <img src="https://via.placeholder.com/400x260?text=Red+Velvet" alt="Red Velvet">
+        <h3>Red Velvet</h3>
+        <p class="price">Rp 6.000</p>
+        <button class="buy" data-name="Red Velvet" data-price="6000">Buy Now</button>
+      </article>
+    </section>
+
+    <section class="order-panel" id="orderPanel">
+      <h2>Place an Order</h2>
+      <form id="orderForm">
+        <label>Buyer name (first name):
+          <input required name="buyer" placeholder="e.g. Raka" />
+        </label>
+        <label>Product:
+          <select name="product" required>
+            <option value="Chocolate Chip">Chocolate Chip</option>
+            <option value="Oreo Crunch">Oreo Crunch</option>
+            <option value="Red Velvet">Red Velvet</option>
+          </select>
+        </label>
+        <label>Quantity:
+          <input type="number" name="qty" value="1" min="1" required />
+        </label>
+        <label>Pickup/Note:
+          <input name="note" placeholder="e.g. school pickup, before 10 AM" />
+        </l
+```
