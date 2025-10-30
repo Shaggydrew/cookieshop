@@ -1,47 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Janandhra Cookies</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Janandhra Cookies</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: url("https://i.imgur.com/qwh6Rme.png");
+    background-size: 400px;
+    color: #3a2a1a;
+  }
+
+  header {
+    text-align: center;
+    padding: 30px 10px;
+    background: #8B5E34;
+    color: white;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 20px;
+    border-radius: 12px;
+  }
+
+  .products {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .cookie-card {
+    background: white;
+    width: 250px;
+    padding: 15px;
+    border-radius: 12px;
+    display: inline-block;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  .cookie-card img {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #8B5E34;
+    color: white;
+  }
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>🍪 Janandhra Cookies</h1>
-    <p class="tagline">Premium Nusantara Cookies with Wayang Soul</p>
-  </header>
 
-  <section class="hero">
-    <div class="wayang"></div>
-    <h2>Fresh. Homemade. Authentic.</h2>
-    <p>Made with traditional Indonesian taste and modern quality.</p>
-  </section>
+<header>
+  <h1>🍪 Janandhra Cookies</h1>
+  <p class="tagline">Premium Nusantara Cookies with Wayang Soul</p>
+</header>
 
-  <section class="products">
-    <h2>Our Best Cookies</h2>
+<section class="hero">
+  <h2>Fresh. Homemade. Authentic.</h2>
+  <p>Made with traditional Indonesian taste and modern quality.</p>
+</section>
 
-    <div class="cookie-card">
-      <img src="https://i.imgur.com/dtQfQEJ.png" alt="Chocolate Chip">
-      <h3>Chocolate Chip</h3>
-      <p>Crunchy & Premium Dark Chocolate</p>
-      <p class="stockLabel">Stock: <span id="stock1">Loading...</span></p>
-    </div>
+<section class="products">
+  <h2>Our Best Cookies</h2>
 
-    <div class="cookie-card">
-      <img src="https://i.imgur.com/1sXXmBo.png" alt="Red Velvet">
-      <h3>Red Velvet</h3>
-      <p>Soft, Sweet, & Creamy Inside</p>
-      <p class="stockLabel">Stock: <span id="stock2">Loading...</span></p>
-    </div>
+  <div class="cookie-card">
+    <img src="https://i.imgur.com/dtQfQEJ.png" alt="Chocolate Chip">
+    <h3>Chocolate Chip</h3>
+    <p>Crunchy & Premium Dark Chocolate</p>
+    <p>Stock: 58 packs left</p>
+  </div>
 
-  </section>
+  <div class="cookie-card">
+    <img src="https://i.imgur.com/1sXXmBo.png" alt="Red Velvet">
+    <h3>Red Velvet</h3>
+    <p>Soft, Sweet, & Creamy Inside</p>
+    <p>Stock: 33 packs left</p>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2025 Janandhra Cookies — Made with Love in Indonesia</p>
-  </footer>
+<footer>
+  <p>© 2025 Janandhra Cookies — Made with Love in Indonesia</p>
+</footer>
 
-  <script src="script.js"></script>
 </body>
-</html>
-
+</html
