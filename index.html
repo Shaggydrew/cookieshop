@@ -1,347 +1,47 @@
-# Janandhra Cookies — Fullstack project
-
-This document contains **all the files** you need for a Wayang-themed Cookie Shop named **Janandhra Cookies**: a nice UI, a realtime server (orders appear instantly for the admin), and a simple backend that stores orders.
-
----
-
-## Files included
-
-1. `index.html` — frontend (UI + ordering form + Socket.IO client)
-2. `styles.css` — CSS (Wayang-inspired colors, layout)
-3. `client.js` — frontend JavaScript (form, realtime socket)
-4. `server.js` — Node.js backend with Express + Socket.IO + lowdb for simple storage
-5. `package.json` — npm metadata
-6. `README.md` — quick run & deploy instructions
-
----
-
-> Open each file below, copy into your project folder, and follow the README to run locally.
-
----
-
-### `index.html`
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Janandhra Cookies</title>
-  <link rel="stylesheet" href="styles.css">
-  <!-- Socket.IO client will be loaded from server (or CDN) -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="hero">
-    <div class="wayang-left" aria-hidden="true">
-      <!-- Simple Wayang SVG ornament -->
-      <svg viewBox="0 0 200 200" class="wayang-svg">
-        <defs>
-          <linearGradient id="g1" x1="0" x2="1">
-            <stop offset="0" stop-color="#f7e6c9" />
-            <stop offset="1" stop-color="#f0c27b" />
-          </linearGradient>
-        </defs>
-        <circle cx="100" cy="100" r="90" fill="url(#g1)" />
-        <!-- stylized wayang face lines (decorative) -->
-        <path d="M50 120 Q100 40 150 120" stroke="#7a3f1c" stroke-width="4" fill="none" />
-      </svg>
-    </div>
-
-    <div class="title">
-      <h1>Janandhra Cookies</h1>
-      <p class="tag">Authentic flavor • Inspired by tradition</p>
-    </div>
-
-    <div class="wayang-right" aria-hidden="true">
-      <!-- mirrored svg -->
-      <svg viewBox="0 0 200 200" class="wayang-svg">
-        <circle cx="100" cy="100" r="90" fill="url(#g1)" />
-        <path d="M50 120 Q100 40 150 120" stroke="#7a3f1c" stroke-width="4" fill="none" />
-      </svg>
-    </div>
+  <header>
+    <h1>🍪 Janandhra Cookies</h1>
+    <p class="tagline">Premium Nusantara Cookies with Wayang Soul</p>
   </header>
 
-  <main class="container">
-    <section class="products">
-      <article class="product">
-        <img src="https://via.placeholder.com/400x260?text=Chocolate+Chip" alt="Chocolate Chip">
-        <h3>Chocolate Chip</h3>
-        <p class="price">Rp 5.000</p>
-        <button class="buy" data-name="Chocolate Chip" data-price="5000">Buy Now</button>
-      </article>
+  <section class="hero">
+    <div class="wayang"></div>
+    <h2>Fresh. Homemade. Authentic.</h2>
+    <p>Made with traditional Indonesian taste and modern quality.</p>
+  </section>
 
-      <article class="product">
-        <img src="https://via.placeholder.com/400x260?text=Oreo+Crunch" alt="Oreo Crunch">
-        <h3>Oreo Crunch</h3>
-        <p class="price">Rp 5.500</p>
-        <button class="buy" data-name="Oreo Crunch" data-price="5500">Buy Now</button>
-      </article>
+  <section class="products">
+    <h2>Our Best Cookies</h2>
 
-      <article class="product">
-        <img src="https://via.placeholder.com/400x260?text=Red+Velvet" alt="Red Velvet">
-        <h3>Red Velvet</h3>
-        <p class="price">Rp 6.000</p>
-        <button class="buy" data-name="Red Velvet" data-price="6000">Buy Now</button>
-      </article>
-    </section>
+    <div class="cookie-card">
+      <img src="https://i.imgur.com/dtQfQEJ.png" alt="Chocolate Chip">
+      <h3>Chocolate Chip</h3>
+      <p>Crunchy & Premium Dark Chocolate</p>
+      <p class="stockLabel">Stock: <span id="stock1">Loading...</span></p>
+    </div>
 
-    <section class="order-panel" id="orderPanel">
-      <h2>Place an Order</h2>
-      <form id="orderForm">
-        <label>Buyer name (first name):
-          <input required name="buyer" placeholder="e.g. Raka" />
-        </label>
-        <label>Product:
-          <select name="product" required>
-            <option value="Chocolate Chip">Chocolate Chip</option>
-            <option value="Oreo Crunch">Oreo Crunch</option>
-            <option value="Red Velvet">Red Velvet</option>
-          </select>
-        </label>
-        <label>Quantity:
-          <input type="number" name="qty" value="1" min="1" required />
-        </label>
-        <label>Pickup/Note:
-          <input name="note" placeholder="e.g. school pickup, before 10 AM" />
-        </label>
-        <button type="submit" class="submit">Send Order</button>
-      </form>
+    <div class="cookie-card">
+      <img src="https://i.imgur.com/1sXXmBo.png" alt="Red Velvet">
+      <h3>Red Velvet</h3>
+      <p>Soft, Sweet, & Creamy Inside</p>
+      <p class="stockLabel">Stock: <span id="stock2">Loading...</span></p>
+    </div>
 
-      <div class="live">
-        <h3>Live orders (admin view)</h3>
-        <ul id="liveOrders"></ul>
-      </div>
-    </section>
-  </main>
+  </section>
 
-  <footer class="site-footer">© Janandhra Cookies</footer>
+  <footer>
+    <p>© 2025 Janandhra Cookies — Made with Love in Indonesia</p>
+  </footer>
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="client.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-```
 
----
-
-### `styles.css`
-
-```css
-:root{
-  --bg:#f8efe6;
-  --accent:#8a4b2f; /* brown */
-  --accent-2:#d8a35a; /* gold */
-  --card:#fff;
-}
-*{box-sizing:border-box}
-body{font-family: Inter, system-ui, Arial, sans-serif; background:var(--bg); margin:0; color:#2b2b2b}
-header.hero{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;background:linear-gradient(90deg, rgba(216,163,90,0.1), rgba(216,163,90,0.05));}
-.wayang-svg{width:80px;height:80px}
-.title{text-align:center;flex:1}
-.title h1{margin:0;font-size:32px;color:var(--accent)}
-.title .tag{margin:6px 0 0;color:#6b4a3a}
-.container{display:flex;gap:20px;padding:25px;max-width:1100px;margin:0 auto}
-.products{display:flex;flex:1;gap:18px;flex-wrap:wrap;justify-content:center}
-.product{background:var(--card);border-radius:12px;padding:12px;width:300px;box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center}
-.product img{width:100%;border-radius:8px}
-.product h3{margin:10px 0 6px}
-.product .price{color:var(--accent-2);font-weight:600}
-button.buy{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
-.order-panel{width:360px;background:linear-gradient(180deg, #fff, #fff);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-.order-panel h2{margin-top:0}
-.order-panel form label{display:block;margin-bottom:10px}
-.order-panel input, .order-panel select{width:100%;padding:8px;border-radius:6px;border:1px solid #e0d6cf}
-.order-panel .submit{width:100%;background:var(--accent-2);color:#fff;padding:10px;border-radius:8px;border:0;cursor:pointer;margin-top:8px}
-.live{margin-top:12px}
-.live ul{list-style:none;padding:0;max-height:180px;overflow:auto}
-.live li{background:#fff5ea;padding:8px;margin-bottom:8px;border-radius:8px;border:1px solid #f0d6b5}
-.site-footer{text-align:center;padding:14px;margin-top:24px;color:#85624a}
-@media(max-width:900px){.container{flex-direction:column;padding:18px}.order-panel{width:100%}}
-```
-
----
-
-### `client.js`
-
-```javascript
-// client.js - connects to server and handles UI
-const socket = io(); // assumes socket.io served at same origin
-
-// handle product buy buttons (quick prefill)
-document.querySelectorAll('.buy').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const name = btn.dataset.name;
-    const price = btn.dataset.price;
-    const form = document.getElementById('orderForm');
-    form.product.value = name;
-    form.qty.value = 1;
-    form.buyer.focus();
-  })
-})
-
-// submit form via POST then socket will notify admin
-const form = document.getElementById('orderForm');
-form.addEventListener('submit', async e=>{
-  e.preventDefault();
-  const data = Object.fromEntries(new FormData(form).entries());
-  data.qty = Number(data.qty || 1);
-
-  // send order to backend
-  const res = await fetch('/api/orders', {method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify(data)});
-  if(res.ok){
-    alert('Order sent!');
-    form.reset();
-  } else {
-    alert('Failed to send order');
-  }
-});
-
-// receive live order events and show in list
-const liveList = document.getElementById('liveOrders');
-socket.on('order:new', order=>{
-  const li = document.createElement('li');
-  li.textContent = `${order.buyer} ordered ${order.qty} × ${order.product} — ${order.note || ''}`;
-  liveList.prepend(li);
-});
-
-// when connecting, receive recent orders
-socket.on('orders:history', list=>{
-  liveList.innerHTML = '';
-  list.reverse().forEach(order=>{
-    const li = document.createElement('li');
-    li.textContent = `${order.buyer} — ${order.qty} × ${order.product}`;
-    liveList.append(li);
-  })
-});
-```
-
----
-
-### `server.js`
-
-```javascript
-// server.js - Express + Socket.IO + lowdb simple backend
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-const { Low, JSONFile } = require('lowdb');
-const path = require('path');
-
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
-
-// lowdb setup (stores orders in db.json)
-const file = path.join(__dirname, 'db.json');
-const adapter = new JSONFile(file);
-const db = new Low(adapter);
-
-async function initDB(){
-  await db.read();
-  db.data = db.data || { orders: [] };
-  await db.write();
-}
-initDB();
-
-app.use(express.json());
-// serve static frontend files from same folder
-app.use(express.static(path.join(__dirname, '/')));
-
-// API: post an order
-app.post('/api/orders', async (req, res)=>{
-  const { buyer, product, qty, note } = req.body;
-  if(!buyer || !product) return res.status(400).json({error:'missing fields'});
-  const order = { id: Date.now(), buyer, product, qty: Number(qty)||1, note: note||'', created: new Date().toISOString() };
-  await db.read();
-  db.data.orders.push(order);
-  await db.write();
-
-  // emit to socket clients
-  io.emit('order:new', order);
-  res.json({ok:true, order});
-});
-
-// simple admin route to fetch orders
-app.get('/api/orders', async (req,res)=>{
-  await db.read();
-  res.json(db.data.orders || []);
-});
-
-// socket handlers
-io.on('connection', async (socket)=>{
-  console.log('socket connected', socket.id);
-  await db.read();
-  socket.emit('orders:history', db.data.orders || []);
-});
-
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, ()=>console.log('Server listening on', PORT));
-```
-
----
-
-### `package.json`
-
-```json
-{
-  "name": "janandhra-cookies",
-  "version": "1.0.0",
-  "description": "Wayang-themed cookie shop with realtime orders",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.6.1",
-    "lowdb": "^5.0.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
-  }
-}
-```
-
----
-
-### `README.md` (run instructions)
-
-```markdown
-# Janandhra Cookies — local run
-
-1. Put all files in one folder (index.html, styles.css, client.js, server.js, package.json)
-2. `npm install`
-3. `npm start`
-4. Open `http://localhost:3000` in your browser
-
-Orders submitted from the site will be saved to `db.json` and broadcast in real-time to all open pages (admin view). To see live orders, open the site in another browser or tab.
-
-## Deploy
-
-- You need a host that supports Node.js (Render, Railway, Fly, Heroku (paid), or your own VPS).
-- Add the project, set build command `npm install` and start command `npm start`.
-- Make sure `PORT` is set by the platform (we use process.env.PORT).
-
-Security note: this is a simple school project backend. Don't store sensitive personal data. For production, use a proper DB and authentication.
-```
-
----
-
-## What I added / how realtime works
-
-* Clicking **Buy Now** or submitting the order form sends a POST `/api/orders` request to the backend.
-* The backend stores orders in `db.json` (via lowdb) and emits `order:new` through Socket.IO.
-* Any connected client receives the `order:new` event — great for an admin dashboard or classroom display.
-
----
-
-If you want, I can now:
-
-* add authentication for the admin page (simple password) so only your friend sees orders
-* add a small dashboard page for admin with accept/complete order buttons
-* switch storage from lowdb to SQLite or a cloud DB
-* help deploy to Render and show exact steps
-
-Tell me which of those you want and I’ll update the files inside this project.
