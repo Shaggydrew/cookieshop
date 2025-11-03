@@ -1,58 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Janandhra Cookie Shop</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f0d59e; /* yellow-brown batik vibe */
-            overflow-x: hidden;
-            text-align: center;
-        }
-
-        .big-wayang {
-            position: fixed;
-            bottom: -400px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 250px;
-            animation: popup 2s ease forwards;
-        }
-
-        @keyframes popup {
-            from { bottom: -400px; }
-            to { bottom: 0; }
-        }
-
-        h1 {
-            margin-top: 120px;
-            font-size: 28px;
-            color: #432a09;
-        }
-
-        .btn {
-            background: #6b4f28;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 20px;
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janandhra Cookies</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
 </head>
+
 <body>
 
-    <h1>Welcome to the Janandhra Cookie Shop from Nizamia</h1>
+<!-- WAYANG POP-UP -->
+<div class="wayang-top">
+    <img src="images/wayang-left.png" class="wayang small">
+    <img src="images/wayang-right.png" class="wayang small">
+</div>
 
+<div class="center">
     <img src="images/wayang-big.png" class="big-wayang">
+    <h1>Welcome to Janandhra Cookies</h1>
+    <p>From Nizamia • Fresh • Handmade • Delicious</p>
 
-    <a class="btn" href="order.html">BUY NOW</a>
+    <button id="loginBtn">Sign in with Google</button>
+
+    <a href="order.html">
+        <button class="order-btn">Start Ordering</button>
+    </a>
+</div>
 
 </body>
 </html>
