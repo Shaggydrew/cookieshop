@@ -1,27 +1,43 @@
+// --- CART SYSTEM ---
 let cart = [];
 
-function addToCart(name, price) {
-    cart.push({ name, price });
-    alert(name + " added to cart!");
+function addToCart(name, price, qtyId) {
+    let qty = document.getElementById(qtyId).value;
+    cart.push({ name, price, qty });
+
+    alert("Added to cart!");
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function openCart() {
-    document.getElementById("cartModal").style.display = "block";
-    let list = document.getElementById("cartItems");
-    list.innerHTML = "";
-    cart.forEach(item => {
-        list.innerHTML += `<li>${item.name} - Rp ${item.price}</li>`;
-    });
+function loadCart() {
+    let cartData = JSON.parse(localStorage.getItem("cart"));
+    let cartBox = document.getElementById("cart");
+
+    if (!cartData || cartData.length === 0) {
+        cartBox.innerHTML = "Your cart is empty";
+        return;
+    }
+
+    cartBox.innerHTML = cartData.map(item =>
+        `${item.qty} × ${item.name} — Rp ${item.price * item.qty}`
+    ).join("<br>");
 }
 
-function closeCart() {
-    document.getElementById("cartModal").style.display = "none";
+function checkoutWhatsapp() {
+    let cartData = JSON.parse(localStorage.getItem("cart"));
+    if (!cartData) return;
+
+    let text = cartData.map(item =>
+        `${item.qty}× ${item.name} (Rp ${item.price * item.qty})`
+    ).join("%0A");
+
+    let url = `https://wa.me/6281380318085?text=Order:%0A${text}`;
+    window.open(url, "_blank");
 }
 
-function checkout() {
-    let message = "Hello! I want to order:\n";
-    cart.forEach(item => {
-        message += `- ${item.name} Rp ${item.price}\n`;
-    });
-    window.open("https://wa.me/6281380318085?text=" + encodeURIComponent(message));
-}
+// --- GOOGLE SIGN IN (Firebase) ---
+// add Firebase CDN in index.html BEFORE script.js
+
+document.getElementById("loginBtn")?.addEventListener("click", function(){
+    alert("Google Login Coming Soon");
+});
