@@ -1,68 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin Dashboard – Janandhra Cookies</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background: #faf5e4;
-      padding: 30px;
-      color: #4a2b00;
-    }
-    h2 {
-      color: #6d2e00;
-    }
-    .order-box {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-  </style>
+<title>Admin | Janandhra Orders</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+<h2>📦 Order Dashboard</h2>
+<p>All customer orders appear here automatically.</p>
 
-<h2>🍪 Admin Dashboard</h2>
-<p>All customer orders appear here.</p>
+<table border="1" cellpadding="8" style="background:white;">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody id="order-table"></tbody>
+</table>
 
-<div id="orders"></div>
-
+<!-- ✅ Firebase Reader -->
 <script type="module">
-  // Firebase imports
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
-  // 🔥 PASTE YOUR FIREBASE CONFIG HERE
+  // ✅ YOUR Firebase Config
   const firebaseConfig = {
-    apiKey: "YOUR-API-KEY",
-    authDomain: "YOUR-PROJECT-ID.firebaseapp.com",
-    projectId: "YOUR-PROJECT-ID",
-    storageBucket: "YOUR-PROJECT-ID.appspot.com",
-    messagingSenderId: "YOUR-SENDER-ID",
-    appId: "YOUR-APP-ID"
+    apiKey: "AIzaSyDXbStgFiAZrrpLWuOe7EBHtkG05Uz-pD4",
+    authDomain: "janandhra-cookies.firebaseapp.com",
+    projectId: "janandhra-cookies",
+    storageBucket: "janandhra-cookies.firebasestorage.app",
+    messagingSenderId: "871240206187",
+    appId: "1:871240206187:web:9a80ac733e51f310ee6e2e",
+    measurementId: "G-8B6J8VW2MJ"
   };
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // 🟤 Real-time order listener
-  const ordersDiv = document.getElementById("orders");
+  // ✅ LIVE Read Orders
+  const tableBody = document.getElementById("order-table");
 
   onSnapshot(collection(db, "orders"), (snapshot) => {
-    ordersDiv.innerHTML = "";
-    snapshot.forEach(doc => {
+    tableBody.innerHTML = ""; // Clear table
+    snapshot.forEach((doc) => {
       const data = doc.data();
-      const orderHTML = `
-        <div class="order-box">
-          <strong>${data.item}</strong><br>
-          Quantity: ${data.quantity}<br>
-          Price: Rp ${data.price}<br>
-          Time: ${new Date(data.time.seconds * 1000).toLocaleString()}
-        </div>
+      let row = `
+        <tr>
+          <td>${data.product}</td>
+          <td>${data.quantity}</td>
+          <td>${data.time}</td>
+        </tr>
       `;
-      ordersDiv.innerHTML += orderHTML;
+      tableBody.innerHTML += row;
     });
   });
 </script>
