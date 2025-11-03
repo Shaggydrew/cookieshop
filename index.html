@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Janandhra Cookies</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+    <title>Cookie Shop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- WAYANG POP-UP -->
-<div class="wayang-top">
-    <img src="images/wayang-left.png" class="wayang small">
-    <img src="images/wayang-right.png" class="wayang small">
+<header>
+    <h1>Cookie Shop</h1>
+    <nav>
+        <a href="cart.html">Cart</a>
+        <a href="order.html">Order</a>
+    </nav>
+</header>
+
+<div class="products">
+    <div class="product">
+        <h3>Chocolate Chip</h3>
+        <p>$3</p>
+        <button onclick="addToCart('Chocolate Chip', 3)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Oreo Cookie</h3>
+        <p>$4</p>
+        <button onclick="addToCart('Oreo Cookie', 4)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Red Velvet</h3>
+        <p>$5</p>
+        <button onclick="addToCart('Red Velvet', 5)">Add to Cart</button>
+    </div>
 </div>
 
-<div class="center">
-    <img src="images/wayang-big.png" class="big-wayang">
-    <h1>Welcome to Janandhra Cookies</h1>
-    <p>From Nizamia • Fresh • Handmade • Delicious</p>
-
-    <button id="loginBtn">Sign in with Google</button>
-
-    <a href="order.html">
-        <button class="order-btn">Start Ordering</button>
-    </a>
-</div>
-
+<script src="script.js"></script>
 </body>
 </html>
