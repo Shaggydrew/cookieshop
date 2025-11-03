@@ -1,61 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Order Cookies</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+    <title>Order</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<h2>Order Cookies</h2>
 
-<div class="product">
-    <img src="images/sugar.jpg">
-    <h3>Sugar Cookie</h3>
-    <p>Rp 6.000</p>
-    <input type="number" min="1" value="1" id="qty-sugar">
-    <button onclick="addToCart('Sugar Cookie',6000,'qty-sugar')">Add to Cart</button>
-</div>
+<header>
+    <h1>Place Order</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
 
-<a href="cart.html">
-    <button class="order-btn">Go to Cart</button>
-</a>
+<form id="orderForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="text" id="address" placeholder="Address" required>
+    <button type="submit">Submit Order</button>
+</form>
 
-<!-- ✅ Firebase + Firestore -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-  import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+<p id="message"></p>
 
-  // ✅ Your Firebase Config (correct)
-  const firebaseConfig = {
-    apiKey: "AIzaSyDXbStgFiAZrrpLWuOe7EBHtkG05Uz-pD4",
-    authDomain: "janandhra-cookies.firebaseapp.com",
-    projectId: "janandhra-cookies",
-    storageBucket: "janandhra-cookies.firebasestorage.app",
-    messagingSenderId: "871240206187",
-    appId: "1:871240206187:web:9a80ac733e51f310ee6e2e",
-    measurementId: "G-8B6J8VW2MJ"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // ✅ Save Order to Firebase
-  async function saveOrderToDB(product, qty) {
-      await addDoc(collection(db, "orders"), {
-          product: product,
-          quantity: qty,
-          time: new Date().toLocaleString()
-      });
-  }
-
-  // ✅ Update Add To Cart Button
-  window.addToCart = function(name, price, inputId) {
-      let qty = document.getElementById(inputId).value;
-      saveOrderToDB(name, qty);
-      alert("Order saved!");
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
