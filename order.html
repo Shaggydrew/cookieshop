@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Order</title>
+    <title>Order Cookies</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
+
 <body>
+<h2>Order Cookies</h2>
 
-<header>
-    <h1>Place Order</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="cart.html">Cart</a>
-    </nav>
-</header>
+<div class="product">
+    <img src="images/sugar.jpg" class="cookie-img">
+    <h3>Sugar Cookie</h3>
+    <p>Rp 6.000</p>
+    <input type="number" min="1" value="1" id="qty-sugar">
+    <button onclick="addToCart('Sugar Cookie', 6000, 'qty-sugar')">Add to Cart</button>
+</div>
 
-<form id="orderForm">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="text" id="address" placeholder="Address" required>
-    <button type="submit">Submit Order</button>
-</form>
+<a href="cart.html">
+    <button class="order-btn">Go to Cart</button>
+</a>
 
-<p id="message"></p>
-
-<script src="script.js"></script>
 </body>
 </html>
