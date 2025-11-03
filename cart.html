@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Your Cart</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<h2>Your Cart</h2>
-<div id="cart"></div>
 
-<button onclick="checkoutWhatsapp()">Checkout with WhatsApp</button>
+<header>
+    <h1>Your Cart</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="order.html">Order</a>
+    </nav>
+</header>
 
+<div id="cart-items"></div>
+<h3>Total: $<span id="total-price">0</span></h3>
+<button onclick="clearCart()">Clear Cart</button>
+
+<script src="script.js"></script>
 </body>
 </html>
