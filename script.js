@@ -1,43 +1,54 @@
-// --- CART SYSTEM ---
-let cart = [];
-
-function addToCart(name, price, qtyId) {
-    let qty = document.getElementById(qtyId).value;
-    cart.push({ name, price, qty });
-
-    alert("Added to cart!");
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price });
     localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to Cart!");
 }
 
-function loadCart() {
-    let cartData = JSON.parse(localStorage.getItem("cart"));
-    let cartBox = document.getElementById("cart");
+function showCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let container = document.getElementById("cart-items");
+    let total = 0;
+    container.innerHTML = "";
 
-    if (!cartData || cartData.length === 0) {
-        cartBox.innerHTML = "Your cart is empty";
-        return;
-    }
+    cart.forEach(item => {
+        container.innerHTML += `<p>${item.name} - $${item.price}</p>`;
+        total += item.price;
+    });
 
-    cartBox.innerHTML = cartData.map(item =>
-        `${item.qty} × ${item.name} — Rp ${item.price * item.qty}`
-    ).join("<br>");
+    document.getElementById("total-price").innerText = total;
 }
 
-function checkoutWhatsapp() {
-    let cartData = JSON.parse(localStorage.getItem("cart"));
-    if (!cartData) return;
-
-    let text = cartData.map(item =>
-        `${item.qty}× ${item.name} (Rp ${item.price * item.qty})`
-    ).join("%0A");
-
-    let url = `https://wa.me/6281380318085?text=Order:%0A${text}`;
-    window.open(url, "_blank");
+function clearCart() {
+    localStorage.removeItem("cart");
+    window.location.reload();
 }
 
-// --- GOOGLE SIGN IN (Firebase) ---
-// add Firebase CDN in index.html BEFORE script.js
+if (window.location.pathname.includes("cart.html")) {
+    showCart();
+}
 
-document.getElementById("loginBtn")?.addEventListener("click", function(){
-    alert("Google Login Coming Soon");
-});
+const orderForm = document.getElementById("orderForm");
+if (orderForm) {
+    orderForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        let name = document.getElementById("name").value;
+        let address = document.getElementById("address").value;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (cart.length === 0) {
+            alert("Cart is empty!");
+            return;
+        }
+
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        orders.push({ name, address, cart, total });
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        localStorage.removeItem("cart");
+        document.getElementById("message").innerText = "Order submitted!";
+        orderForm.reset();
+    });
+}
