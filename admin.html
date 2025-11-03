@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard – Janandhra Cookies</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #faf5e4;
+      padding: 30px;
+      color: #4a2b00;
+    }
+    h2 {
+      color: #6d2e00;
+    }
+    .order-box {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
 
+<h2>🍪 Admin Dashboard</h2>
+<p>All customer orders appear here.</p>
+
+<div id="orders"></div>
+
+<script type="module">
+  // Firebase imports
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // 🔥 PASTE YOUR FIREBASE CONFIG HERE
+  const firebaseConfig = {
+    apiKey: "YOUR-API-KEY",
+    authDomain: "YOUR-PROJECT-ID.firebaseapp.com",
+    projectId: "YOUR-PROJECT-ID",
+    storageBucket: "YOUR-PROJECT-ID.appspot.com",
+    messagingSenderId: "YOUR-SENDER-ID",
+    appId: "YOUR-APP-ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 🟤 Real-time order listener
+  const ordersDiv = document.getElementById("orders");
+
+  onSnapshot(collection(db, "orders"), (snapshot) => {
+    ordersDiv.innerHTML = "";
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const orderHTML = `
+        <div class="order-box">
+          <strong>${data.item}</strong><br>
+          Quantity: ${data.quantity}<br>
+          Price: Rp ${data.price}<br>
+          Time: ${new Date(data.time.seconds * 1000).toLocaleString()}
+        </div>
+      `;
+      ordersDiv.innerHTML += orderHTML;
+    });
+  });
+</script>
+
+</body>
+</html>
