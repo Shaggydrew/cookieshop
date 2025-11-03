@@ -1,61 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin | Janandhra Orders</title>
-<link rel="stylesheet" href="style.css">
+    <title>Admin Orders</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<h2>📦 Order Dashboard</h2>
-<p>All customer orders appear here automatically.</p>
 
-<table border="1" cellpadding="8" style="background:white;">
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Time</th>
-    </tr>
-  </thead>
-  <tbody id="order-table"></tbody>
-</table>
+<header>
+    <h1>Admin - Order List</h1>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+</header>
 
-<!-- ✅ Firebase Reader -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+<h3>Orders:</h3>
+<div id="orderList"></div>
 
-  // ✅ YOUR Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyDXbStgFiAZrrpLWuOe7EBHtkG05Uz-pD4",
-    authDomain: "janandhra-cookies.firebaseapp.com",
-    projectId: "janandhra-cookies",
-    storageBucket: "janandhra-cookies.firebasestorage.app",
-    messagingSenderId: "871240206187",
-    appId: "1:871240206187:web:9a80ac733e51f310ee6e2e",
-    measurementId: "G-8B6J8VW2MJ"
-  };
+<script>
+const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+if (orders.length === 0) {
+    document.getElementById("orderList").innerHTML = "<p>No orders yet.</p>";
+} else {
+    let html = "";
 
-  // ✅ LIVE Read Orders
-  const tableBody = document.getElementById("order-table");
-
-  onSnapshot(collection(db, "orders"), (snapshot) => {
-    tableBody.innerHTML = ""; // Clear table
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      let row = `
-        <tr>
-          <td>${data.product}</td>
-          <td>${data.quantity}</td>
-          <td>${data.time}</td>
-        </tr>
-      `;
-      tableBody.innerHTML += row;
+    orders.forEach((o, i) => {
+        html += `
+        <div class="order-box">
+            <p><strong>Order #${i+1}</strong></p>
+            <p>Name: ${o.name}</p>
+            <p>Address: ${o.address}</p>
+            <p>Items:</p>
+            <ul>
+                ${o.cart.map(item => `<li>${item.name} - $${item.price}</li>`).join("")}
+            </ul>
+            <p><strong>Total: $${o.total}</strong></p>
+        </div>
+        `;
     });
-  });
+
+    document.getElementById("orderList").innerHTML = html;
+}
 </script>
 
 </body>
