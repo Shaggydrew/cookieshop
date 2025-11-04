@@ -3,21 +3,20 @@
 <head>
     <title>Your Cart</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
+
 <body>
+<h2>Your Cart</h2>
+<div id="cartList"></div>
 
-<header>
-    <h1>Your Cart</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="order.html">Order</a>
-    </nav>
-</header>
+<h3>Enter Your Information</h3>
+<input type="text" id="name" placeholder="Your Name">
+<input type="text" id="address" placeholder="Your Address">
+<button onclick="placeOrder()">Confirm Order</button>
 
-<div id="cart-items"></div>
-<h3>Total: $<span id="total-price">0</span></h3>
-<button onclick="clearCart()">Clear Cart</button>
-
-<script src="script.js"></script>
+<a href="order.html">
+    <button class="order-btn">Back to Order</button>
+</a>
 </body>
 </html>
