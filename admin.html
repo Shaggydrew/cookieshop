@@ -4,42 +4,31 @@
     <title>Admin Orders</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+<h1>Admin Order List</h1>
 
-<header>
-    <h1>Admin - Order List</h1>
-    <nav>
-        <a href="index.html">Home</a>
-    </nav>
-</header>
-
-<h3>Orders:</h3>
-<div id="orderList"></div>
+<div id="ordersHere"></div>
 
 <script>
-const orders = JSON.parse(localStorage.getItem("orders")) || [];
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
 if (orders.length === 0) {
-    document.getElementById("orderList").innerHTML = "<p>No orders yet.</p>";
+    document.getElementById("ordersHere").innerHTML = "<p>No orders yet.</p>";
 } else {
     let html = "";
-
-    orders.forEach((o, i) => {
+    orders.forEach((order, i) => {
         html += `
         <div class="order-box">
-            <p><strong>Order #${i+1}</strong></p>
-            <p>Name: ${o.name}</p>
-            <p>Address: ${o.address}</p>
-            <p>Items:</p>
-            <ul>
-                ${o.cart.map(item => `<li>${item.name} - $${item.price}</li>`).join("")}
-            </ul>
-            <p><strong>Total: $${o.total}</strong></p>
+            <strong>Order #${i+1}</strong><br>
+            Name: ${order.name}<br>
+            Address: ${order.address}<br>
+            Cookie: Sugar Cookie<br>
+            Quantity: ${order.qty}<br><br>
         </div>
         `;
     });
-
-    document.getElementById("orderList").innerHTML = html;
+    document.getElementById("ordersHere").innerHTML = html;
 }
 </script>
 
