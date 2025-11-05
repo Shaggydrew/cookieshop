@@ -7,14 +7,26 @@
 </head>
 
 <body>
-<h2>Order Cookies</h2>
 
-<div class="product">
-    <img src="images/sugar.jpg" class="cookie-img">
-    <h3>Sugar Cookie</h3>
-    <p>Rp 6.000</p>
-    <input type="number" min="1" value="1" id="qty-sugar">
-    <button onclick="addToCart('Sugar Cookie', 6000, 'qty-sugar')">Add to Cart</button>
+<h2 class="section-title">Our Menu</h2>
+<div class="menu-container">
+
+    <!-- Sugar Cookie Card -->
+    <div class="menu-card">
+        <img src="images/sugar.jpg" class="menu-img" alt="Sugar Cookie">
+        <h3>Sugar Cookie</h3>
+        <p class="price">Rp 6.000</p>
+
+        <div class="quantity-box">
+            <label>Qty:</label>
+            <input type="number" min="1" value="1" id="qty-sugar">
+        </div>
+
+        <button class="add-btn" onclick="addToCart('Sugar Cookie', 6000, 'qty-sugar')">
+            Add to Cart
+        </button>
+    </div>
+
 </div>
 
 <a href="cart.html">
