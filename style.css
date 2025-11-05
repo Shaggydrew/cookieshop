@@ -56,3 +56,56 @@ h1, h2 {
     box-shadow: 0 6px 14px rgba(0,0,0,0.06);
     text-align: left;
 }
+.section-title {
+    font-size: 28px;
+    color: #4b2e06;
+    margin-bottom: 20px;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.menu-card {
+    background: #ffffff;
+    width: 240px;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.menu-img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d18300;
+}
+
+.quantity-box {
+    margin: 8px 0 12px;
+}
+
+.quantity-box input {
+    width: 60px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.add-btn {
+    background: #d18300;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
